@@ -32,37 +32,128 @@
             color: var(--white);
             line-height: 1.6;
             overflow-x: hidden;
+            margin-left: 250px;
+            /* Offset for sidebar */
         }
 
         /* Navigation Bar */
+        /* Navigation Bar - Left Sidebar */
         .navbar {
             position: fixed;
             top: 0;
-            width: 100%;
+            left: 0;
+            width: 250px;
+            height: 100vh;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            justify-content: flex-start;
             align-items: center;
-            padding: 1.2rem 5%;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--glass-border);
+            padding: 0;
+            background: rgba(10, 61, 46, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+            border-bottom: none;
             z-index: 1000;
             transition: all 0.3s ease;
+            overflow-y: auto;
         }
 
         .navbar.scrolled {
-            padding: 0.8rem 5%;
-            background: rgba(10, 61, 46, 0.9);
+            padding: 0;
+            background: rgba(10, 61, 46, 0.2);
         }
 
         .logo {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            cursor: pointer;
+            text-align: center;
+            margin-bottom: 0;
+            width: 100%;
+            padding: 3rem 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            /* Darker background for logo area */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .logo img {
+            height: 60px;
+        }
+
+        .logo-icon-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            /* Ensure image is above the wave */
+        }
+
+        .logo-icon-wrapper img {
+            animation: float 3s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Air wave / Ripple effect */
+        .logo-icon-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
             height: 50px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            z-index: 0;
+            animation: wave 2s infinite ease-out;
+        }
+
+        /* Second wave for more depth */
+        .logo-icon-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            z-index: 0;
+            animation: wave 2s infinite ease-out 0.5s;
+            /* Delayed start */
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        @keyframes wave {
+            0% {
+                width: 50px;
+                height: 50px;
+                opacity: 1;
+            }
+
+            100% {
+                width: 100px;
+                height: 100px;
+                opacity: 0;
+            }
         }
 
         .logo-text {
@@ -85,37 +176,41 @@
 
         .nav-links {
             display: flex;
+            flex-direction: column;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
+            width: 100%;
+            align-items: center;
+            padding: 2rem 1.5rem;
+        }
+
+        .nav-links li {
+            width: 100%;
+            text-align: center;
         }
 
         .nav-links a {
             color: var(--white);
             text-decoration: none;
             font-weight: 500;
-            font-size: 1rem;
-            padding: 0.5rem 0;
+            font-size: 1.1rem;
+            padding: 0.8rem 1rem;
             position: relative;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            display: block;
+            border-radius: 10px;
+            width: 100%;
         }
 
         .nav-links a:hover {
-            color: var(--accent-green);
+            color: var(--white);
+            background: var(--light-green);
+            transform: translateX(5px);
         }
 
         .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent-green);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
+            display: none;
+            /* Remove underline style for sidebar */
         }
 
         .mobile-menu-btn {
@@ -248,6 +343,12 @@
             color: var(--white);
             display: inline-block;
             padding-bottom: 1rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .section-title h2:hover {
+            color: var(--accent-green);
         }
 
         .section-title h2::after {
@@ -676,6 +777,31 @@
 
         /* Responsive Design */
         @media (max-width: 992px) {
+            body {
+                margin-left: 0;
+            }
+
+            .navbar {
+                width: 100%;
+                height: 70px;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 1rem 5%;
+                border-bottom: 1px solid var(--glass-border);
+                border-right: none;
+                overflow-y: visible;
+            }
+
+            .logo {
+                flex-direction: row;
+                gap: 10px;
+                margin-bottom: 0;
+                width: auto;
+            }
+
+            .logo-text h1 {
+                font-size: 1.5rem;
+            }
 
             .about-content,
             .contact-container {
@@ -688,12 +814,6 @@
 
             .hero-content h1 {
                 font-size: 2.8rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 1rem 5%;
             }
 
             .nav-links {
@@ -710,6 +830,7 @@
                 opacity: 0;
                 transition: all 0.3s;
                 border-bottom: 1px solid var(--glass-border);
+                height: auto;
             }
 
             .nav-links.active {
@@ -720,7 +841,10 @@
             .mobile-menu-btn {
                 display: block;
             }
+        }
 
+        /* Remove the old media query content that conflicts or is redundant if not careful */
+        @media (max-width: 768px) {
             .hero-content h1 {
                 font-size: 2.2rem;
             }
@@ -760,10 +884,12 @@
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <div class="logo">
+        <div class="logo" id="navbar-logo">
+            <div class="logo-icon-wrapper">
+                <img src="img/gbaselogo.png" alt="Gbase Technologies Logo">
+            </div>
             <div class="logo-text">
-                <h1>Gbase Technologies</h1>
-                <p>All Kinds of Computers & Laptops</p>
+                <p>ICT Providers</p>
             </div>
         </div>
 
@@ -793,7 +919,7 @@
             <h1>Complete Computer Solutions</h1>
             <div class="hero-highlight">Repairs • Upgrades • Custom Builds • Software</div>
             <p>Gbase Technologies provides expert repair services for all types of computers and laptops, software
-                installations, and custom gaming PC builds. Your trusted partner in technology since 2010.</p>
+                installations, and custom gaming PC builds. Your trusted partner in technology since 2004.</p>
             <a href="#contact" class="cta-button">Get a Free Consultation</a>
         </div>
     </section>
@@ -894,7 +1020,7 @@
     <!-- Expert Team Section -->
     <section class="section" id="team" style="background-color: rgba(10, 61, 46, 0.3);">
         <div class="section-title">
-            <h2>Our Expert Team</h2>
+            <h2 id="team-heading">Our Expert Team</h2>
         </div>
         <div class="section-subtitle">
             <p>Certified professionals with years of experience</p>
@@ -935,39 +1061,8 @@
         <div class="section-subtitle">
             <p>High-quality accessories to enhance your computing experience</p>
         </div>
-        <div class="accessories-container">
-            <div class="accessory-item" id="accessory-1">
-                <img src="img/black.webp" alt="Gaming Keyboard" class="accessory-img">
-                <div class="accessory-info">
-                    <h3>Mechanical Gaming Keyboard</h3>
-                    <p>RGB backlit with customizable keys</p>
-                    <div class="price">Rs 15,000</div>
-                </div>
-            </div>
-            <div class="accessory-item" id="accessory-2">
-                <img src="img/mouse.jpg" alt="Gaming Mouse" class="accessory-img">
-                <div class="accessory-info">
-                    <h3>High-Precision Gaming Mouse</h3>
-                    <p>Adjustable DPI and programmable buttons</p>
-                    <div class="price">Rs 7500</div>
-                </div>
-            </div>
-            <div class="accessory-item" id="accessory-3">
-                <img src="img/monitor.webp" alt="Monitor" class="accessory-img">
-                <div class="accessory-info">
-                    <h3>27" 144Hz Gaming Monitor</h3>
-                    <p>Ultra-fast refresh rate for smooth gameplay</p>
-                    <div class="price">Rs 75,000</div>
-                </div>
-            </div>
-            <div class="accessory-item" id="accessory-4">
-                <img src="img/kc.jpg" alt="SSD Drive" class="accessory-img">
-                <div class="accessory-info">
-                    <h3>1TB NVMe SSD</h3>
-                    <p>High-speed storage for faster load times</p>
-                    <div class="price">Rs 42,000</div>
-                </div>
-            </div>
+        <div class="accessories-container" id="accessories-container">
+            <!-- Dynamic Content -->
         </div>
     </section>
 
@@ -1061,7 +1156,7 @@
         <div class="footer-content">
             <div class="footer-logo">
                 <h3>Gbase Technologies</h3>
-                <p>Your trusted partner for all computer and laptop solutions since 2010.</p>
+                <p>Your trusted partner for all computer and laptop solutions since 2004.</p>
             </div>
             <div class="footer-links">
                 <h4>Quick Links</h4>
@@ -1084,7 +1179,9 @@
         </div>
         <div class="copyright">
             <p>&copy; 2023 Gbase Technologies. All rights reserved. | Designed with <i class="fas fa-heart"
-                    style="color: #ff4757;"></i> for computer enthusiasts</p>
+                    style="color: #ff4757;"></i> for computer enthusiasts <a href="admin.html"
+                    style="color: #555; text-decoration: none; font-size: 0.8rem; margin-left: 10px;">Admin Access</a>
+            </p>
         </div>
     </footer>
 
@@ -1153,7 +1250,7 @@
             name: "Imthiyas Azan",
             position: "CEO",
             image: "img/imthiyas.jpeg",
-            description: "<p>Imthiyas founded Gbase Technologies in 2010 with a vision to provide reliable and affordable computer solutions to the community. With over 15 years of experience in computer hardware and software, he has built a team of certified technicians who share his passion for technology.</p><p>Under his leadership, Gbase has grown from a small repair shop to a full-service computer solutions provider, specializing in repairs, custom builds, and software services. Imthiyas believes in continuous learning and ensures his team stays updated with the latest technological advancements.</p><p>When he's not working, Imthiyas enjoys building custom gaming PCs and participating in local tech meetups.</p>"
+            description: "<p>Imthiyas founded Gbase Technologies in 2004 with a vision to provide reliable and affordable computer solutions to the community. With over 12 years of experience in computer hardware and software, he has built a team of certified technicians who share his passion for technology.</p><p>Under his leadership, Gbase has grown from a small repair shop to a full-service computer solutions provider, specializing in repairs, custom builds, and software services. Imthiyas believes in continuous learning and ensures his team stays updated with the latest technological advancements.</p><p>When he's not working, Imthiyas enjoys building custom gaming PCs and participating in local tech meetups.</p>"
         };
 
         // Team Members Modal Data
@@ -1167,51 +1264,117 @@
             },
             "team-member-2": {
                 title: "Team Member Details",
-                name: "David Chen",
+                name: "M.N.N.Saththir",
                 position: "Software & OS Expert",
-                image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                image: "img/picture (1).jpeg",
                 description: "<p>David is our software guru with extensive experience in operating systems, virus removal, and software optimization. He is Microsoft Certified and specializes in Windows installations, driver updates, and system troubleshooting.</p><p>With 8 years in the industry, David has developed efficient processes for software repairs that minimize downtime for our clients. He stays current with the latest security threats and protection methods.</p><p>David enjoys coding in his spare time and has developed several utility tools that our team uses to streamline diagnostics.</p>"
             },
             "team-member-3": {
                 title: "Team Member Details",
-                name: "James Wilson",
+                name: "Nafri",
                 position: "Gaming PC Specialist",
-                image: "https://images.unsplash.com/photo-1551836026-d5c2c5af78e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                image: "img/Nafri.jpeg",
                 description: "<p>James is our custom gaming PC expert with a passion for high-performance computing. He has been building custom PCs for over 7 years and stays updated on the latest components and benchmarking techniques.</p><p>He works closely with clients to understand their gaming needs and budget, then designs and builds optimized systems for gaming, streaming, and content creation. James also specializes in PC cooling solutions and RGB lighting setups.</p><p>When he's not building PCs, James is an avid gamer who participates in local esports tournaments.</p>"
             }
         };
 
-        // Accessories Modal Data
-        const accessoriesData = {
-            "accessory-1": {
+        // Accessories Data Management
+        const initialAccessories = [
+            {
+                id: "accessory-1",
                 title: "Product Details",
                 name: "Mechanical Gaming Keyboard",
-                position: "Rs 15,000",
+                price: "Rs 15,000",
+                shortDesc: "RGB backlit with customizable keys",
                 image: "img/black.webp",
                 description: "<p>This mechanical gaming keyboard features RGB backlighting with 16.8 million color options and customizable lighting effects. It uses Cherry MX Red switches for smooth, linear keystrokes perfect for gaming.</p><p><strong>Features:</strong></p><ul><li>Anti-ghosting with N-key rollover</li><li>Detachable wrist rest for comfort</li><li>Programmable macro keys</li><li>Aluminum top plate for durability</li><li>Braided USB cable</li></ul><p>Compatible with Windows, Mac, and Linux systems. Includes software for advanced customization.</p>"
             },
-            "accessory-2": {
+            {
+                id: "accessory-2",
                 title: "Product Details",
                 name: "High-Precision Gaming Mouse",
-                position: "Rs 7500",
+                price: "Rs 7500",
+                shortDesc: "Adjustable DPI and programmable buttons",
                 image: "img/mouse.jpg",
                 description: "<p>This high-precision gaming mouse features an adjustable DPI from 200 to 12,000, allowing you to switch sensitivity on the fly. It has 8 programmable buttons that can be customized for games or productivity applications.</p><p><strong>Features:</strong></p><ul><li>Pixart 3389 sensor for accurate tracking</li><li>Omron switches rated for 50 million clicks</li><li>RGB lighting with 8 effects</li><li>Lightweight design (85g)</li><li>Braided cable with gold-plated USB</li></ul><p>Ergonomic shape suitable for claw, palm, or fingertip grip styles.</p>"
             },
-            "accessory-3": {
+            {
+                id: "accessory-3",
                 title: "Product Details",
                 name: "27\" 144Hz Gaming Monitor",
-                position: "Rs 75,000",
+                price: "Rs 75,000",
+                shortDesc: "Ultra-fast refresh rate for smooth gameplay",
                 image: "img/monitor.webp",
                 description: "<p>This 27-inch gaming monitor features a 144Hz refresh rate and 1ms response time, eliminating motion blur and providing smooth gameplay even in fast-paced games. It supports AMD FreeSync technology for tear-free gaming.</p><p><strong>Features:</strong></p><ul><li>2560x1440 QHD resolution</li><li>IPS panel with wide viewing angles</li><li>HDR10 support for better contrast</li><li>Thin bezels for multi-monitor setups</li><li>Adjustable stand (height, tilt, swivel)</li></ul><p>Includes DisplayPort, HDMI, and USB ports. Perfect for gaming, graphic design, and multimedia work.</p>"
             },
-            "accessory-4": {
+            {
+                id: "accessory-4",
                 title: "Product Details",
                 name: "1TB NVMe SSD",
-                position: "Rs 42,000",
+                price: "Rs 42,000",
+                shortDesc: "High-speed storage for faster load times",
                 image: "img/kc.jpg",
                 description: "<p>This high-speed NVMe SSD offers read speeds up to 3500MB/s and write speeds up to 3000MB/s, making it 6x faster than traditional SATA SSDs. It's perfect for operating systems, games, and applications that demand fast load times.</p><p><strong>Features:</strong></p><ul><li>PCIe Gen 3.0 x4 interface</li><li>M.2 2280 form factor</li><li>3D NAND flash memory</li><li>5-year limited warranty</li><li>Thermal throttling protection</li></ul><p>Includes cloning software for easy migration from your old drive. Compatible with desktops and laptops that have M.2 slots.</p>"
             }
+        ];
+
+        // Initialize or Load Stock
+        let stockData = JSON.parse(localStorage.getItem('gbase_stock'));
+
+        if (!stockData || stockData.length === 0) {
+            stockData = initialAccessories;
+            localStorage.setItem('gbase_stock', JSON.stringify(stockData));
+        }
+
+        // Render Stock Items
+        function renderStock() {
+            const container = document.getElementById('accessories-container');
+            container.innerHTML = '';
+
+            stockData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'accessory-item';
+                card.id = item.id;
+
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="accessory-img">
+                    <div class="accessory-info">
+                        <h3>${item.name}</h3>
+                        <p>${item.shortDesc}</p>
+                        <div class="price">${item.price}</div>
+                    </div>
+                `;
+
+                // Add click listener directly to the card
+                card.addEventListener('click', () => {
+                    openModal({
+                        title: item.title,
+                        name: item.name,
+                        position: item.price,
+                        image: item.image,
+                        description: item.description
+                    });
+                });
+
+                container.appendChild(card);
+            });
+        }
+
+        // Initial Render
+        renderStock();
+
+        // Open modal with CEO data
+        const logoModalData = {
+            title: "Gbase Leadership & Service",
+            name: "Imthiyas Azan",
+            position: "CEO & Manager",
+            image: "img/imthiyas.jpeg",
+            description: ceoData.description + "<br><br><p><strong>Gbase Experience & Service Excellence:</strong></p><p>With over two decades of dedicated service, Gbase Technologies has established itself as a premier destination for comprehensive ICT solutions. We don't just fix computers; we engineer experiences. From diagnosing complex motherboard issues to crafting high-end custom liquid-cooled gaming rigs, our expertise spans the entire spectrum of computing.</p><p>Our commitment to quality is unwavering, using only top-tier components and industry-standard practices. We pride ourselves on transparent communication, quick turnaround times, and post-service support that ensures our clients feel valued and secure in their technology investments.</p>"
         };
+
+        document.getElementById('navbar-logo').addEventListener('click', () => {
+            openModal(logoModalData);
+        });
 
         // Open modal with CEO data
         document.getElementById('ceo-card').addEventListener('click', () => {
@@ -1226,22 +1389,77 @@
         });
 
         // Open modal with accessory data
-        Object.keys(accessoriesData).forEach(id => {
-            document.getElementById(id).addEventListener('click', () => {
-                openModal(accessoriesData[id]);
-            });
-        });
+        // Previous static listener removed
+        // Object.keys(accessoriesData).forEach(id => { ... });
 
         // Function to open modal with data
         function openModal(data) {
             modalTitle.textContent = data.title;
-            modalName.textContent = data.name;
-            modalPosition.textContent = data.position;
-            modalImage.src = data.image;
+
+            if (data.name) {
+                modalName.textContent = data.name;
+                modalName.style.display = 'block';
+            } else {
+                modalName.style.display = 'none';
+            }
+
+            if (data.position) {
+                modalPosition.textContent = data.position;
+                modalPosition.style.display = 'block';
+            } else {
+                modalPosition.style.display = 'none';
+            }
+
+            if (data.image) {
+                modalImage.src = data.image;
+                modalImage.style.display = 'block';
+                document.querySelector('.modal-body').style.gridTemplateColumns = '1fr 2fr';
+            } else {
+                modalImage.style.display = 'none';
+                document.querySelector('.modal-body').style.gridTemplateColumns = '1fr';
+            }
+
             modalDescription.innerHTML = data.description;
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
+
+        // Open All Team Details
+        document.getElementById('team-heading').addEventListener('click', () => {
+            let allTeamHTML = `
+                <div style="margin-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">
+                    <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+                        <img src="${ceoData.image}" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-green);">
+                        <div>
+                            <h4 style="color: var(--white); margin: 0;">${ceoData.name}</h4>
+                            <p style="color: var(--accent-green); margin: 0;">${ceoData.position}</p>
+                        </div>
+                    </div>
+                    ${ceoData.description}
+                </div>
+            `;
+
+            Object.keys(teamData).forEach(id => {
+                const member = teamData[id];
+                allTeamHTML += `
+                    <div style="margin-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">
+                        <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+                            <img src="${member.image}" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-green);">
+                            <div>
+                                <h4 style="color: var(--white); margin: 0;">${member.name}</h4>
+                                <p style="color: var(--accent-green); margin: 0;">${member.position}</p>
+                            </div>
+                        </div>
+                        ${member.description}
+                    </div>
+                `;
+            });
+
+            openModal({
+                title: "Meet Our Entire Team",
+                description: allTeamHTML
+            });
+        });
 
         // Close modal
         closeModal.addEventListener('click', () => {
