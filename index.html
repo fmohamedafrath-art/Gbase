@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gbase Technologies - Complete Computer Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --dark-green: #0a3d2e;
+            --medium-green: #1b5e3a;
+            --light-green: #2e7d5a;
+            --accent-green: #4caf50;
+            --glass-bg: rgba(10, 61, 46, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --text-dark: #333333;
+        }
+
+        body {
+            background-color: #0a0f0d;
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.8rem 5%;
+            background: rgba(10, 61, 46, 0.9);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: var(--white);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo-text p {
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-green);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section Slider */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out, transform 10s ease;
+            z-index: 0;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 15, 13, 0.7);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            margin: 0 1rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: var(--light-gray);
+        }
+
+        .hero-highlight {
+            display: inline-block;
+            background-color: var(--medium-green);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            border: 2px solid var(--accent-green);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-green);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            border-color: var(--accent-green);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--white);
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-green);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-green);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Services Section */
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-green);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .service-card p {
+            color: var(--light-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Team Section */
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member,
+        .ceo-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .team-member:hover,
+        .ceo-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-green);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .member-img,
+        .ceo-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .member-info,
+        .ceo-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .member-info h3,
+        .ceo-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .member-info p,
+        .ceo-info p {
+            color: var(--accent-green);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        /* Accessories Section */
+        .accessories-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .accessory-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .accessory-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-green);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .accessory-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .accessory-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .accessory-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .accessory-info p {
+            color: var(--light-gray);
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            color: var(--accent-green);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-green);
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-detail i {
+            font-size: 1.5rem;
+            color: var(--accent-green);
+            margin-right: 1rem;
+            margin-top: 0.2rem;
+        }
+
+        .contact-form {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-green);
+        }
+
+        /* Map Section */
+        .map-container {
+            margin-top: 3rem;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            height: 400px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-green);
+            padding: 3rem 5% 1.5rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            text-align: left;
+        }
+
+        .footer-logo h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .footer-links h4,
+        .footer-contact h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-green);
+            text-align: left;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-green);
+        }
+
+        .footer-contact p {
+            text-align: left;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .footer-contact i {
+            color: var(--accent-green);
+        }
+
+        .copyright {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Modal Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--dark-green);
+            width: 90%;
+            max-width: 700px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--accent-green);
+            position: relative;
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            background-color: var(--medium-green);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            color: var(--white);
+            font-size: 1.8rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--accent-green);
+        }
+
+        .modal-body {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+        }
+
+        .modal-img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .modal-info h4 {
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 5%;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--dark-green);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                gap: 1.5rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s;
+                border-bottom: 1px solid var(--glass-border);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content {
+                padding: 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .section {
+                padding: 3rem 5%;
+            }
+
+            .service-card,
+            .about-text,
+            .contact-info,
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-text">
+                <h1>Gbase Technologies</h1>
+                <p>All Kinds of Computers & Laptops</p>
+            </div>
+        </div>
+
+        <button class="mobile-menu-btn" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#team">Our Team</a></li>
+            <li><a href="#accessories">Accessories</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section with Background Slider -->
+    <section class="hero" id="home">
+        <div class="hero-slider">
+            <div class="hero-slide active" style="background-image: url('img/hero1.png');"></div>
+            <div class="hero-slide" style="background-image: url('img/hero2.png');"></div>
+            <div class="hero-slide" style="background-image: url('img/hero3.png');"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Complete Computer Solutions</h1>
+            <div class="hero-highlight">Repairs • Upgrades • Custom Builds • Software</div>
+            <p>Gbase Technologies provides expert repair services for all types of computers and laptops, software
+                installations, and custom gaming PC builds. Your trusted partner in technology since 2010.</p>
+            <a href="#contact" class="cta-button">Get a Free Consultation</a>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="section" id="about">
+        <div class="section-title">
+            <h2>About Us</h2>
+        </div>
+        <div class="section-subtitle">
+            <p>With over a decade of experience, Gbase Technologies has become the leading computer repair and
+                customization service in the region.</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Our Mission & Vision</h3>
+                <p>At Gbase Technologies, we believe that technology should work for you, not against you. Our mission
+                    is to provide reliable, efficient, and affordable computer solutions for both individuals and
+                    businesses.</p>
+                <p>We specialize in laptop and desktop repairs, software troubleshooting, Windows installation, and
+                    custom gaming PC builds. Our team of certified technicians stays up-to-date with the latest
+                    technology trends to deliver the best solutions.</p>
+                <p>We pride ourselves on our quick turnaround times, transparent pricing, and commitment to customer
+                    satisfaction. Whether you need a simple software update or a complete custom PC build, we've got you
+                    covered.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                    alt="Computer Repair Shop">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services" style="background-color: rgba(10, 61, 46, 0.3);">
+        <div class="section-title">
+            <h2>Our Services</h2>
+        </div>
+        <div class="section-subtitle">
+            <p>Comprehensive computer solutions tailored to your needs</p>
+        </div>
+        <div class="services-container">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3>Hardware Repairs</h3>
+                <p>Expert repair services for laptops, desktops, and all computer components. We fix screens, keyboards,
+                    motherboards, and more.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-laptop-medical"></i>
+                </div>
+                <h3>Software Solutions</h3>
+                <p>Windows installation, virus removal, driver updates, and software troubleshooting. We make your
+                    computer run like new.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h3>Custom Gaming PCs</h3>
+                <p>Build your dream gaming rig with our expert guidance. We select the best components for your budget
+                    and performance needs.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h3>Upgrades & Optimization</h3>
+                <p>Boost your computer's performance with RAM upgrades, SSD installations, and system optimization
+                    services.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CEO Section -->
+    <section class="section" id="ceo">
+        <div class="section-title">
+            <h2>Our Leadership</h2>
+        </div>
+        <div class="section-subtitle">
+            <p>Meet the visionary behind Gbase Technologies</p>
+        </div>
+        <div class="team-container" style="max-width: 500px; margin: 0 auto;">
+            <div class="ceo-card" id="ceo-card">
+                <img src="img/imthiyas.jpeg" alt="CEO" class="ceo-img">
+                <div class="ceo-info">
+                    <h3>Imthiyas Azan</h3>
+                    <p>CEO</p>
+                    <p>12+ years in computer technology</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expert Team Section -->
+    <section class="section" id="team" style="background-color: rgba(10, 61, 46, 0.3);">
+        <div class="section-title">
+            <h2>Our Expert Team</h2>
+        </div>
+        <div class="section-subtitle">
+            <p>Certified professionals with years of experience</p>
+        </div>
+        <div class="team-container">
+            <div class="team-member" id="team-member-1">
+                <img src="img/AFRATH.jpg" alt="Technician" class="member-img">
+                <div class="member-info">
+                    <h3>Afrath Farook</h3>
+                    <p>Lead Hardware Specialist</p>
+                    <p>4+ years experience</p>
+                </div>
+            </div>
+            <div class="team-member" id="team-member-2">
+                <img src="img/picture (1).jpeg" alt="Technician" class="member-img">
+                <div class="member-info">
+                    <h3>Saththir</h3>
+                    <p>Software & OS Expert</p>
+                    <p>Microsoft Certified</p>
+                </div>
+            </div>
+            <div class="team-member" id="team-member-3">
+                <img src="img/Nafri.jpeg" alt="Technician" class="member-img">
+                <div class="member-info">
+                    <h3>Nafri</h3>
+                    <p>Gaming PC Specialist</p>
+                    <p>Custom Build Expert</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accessories Section -->
+    <section class="section" id="accessories">
+        <div class="section-title">
+            <h2>Computer Accessories</h2>
+        </div>
+        <div class="section-subtitle">
+            <p>High-quality accessories to enhance your computing experience</p>
+        </div>
+        <div class="accessories-container">
+            <div class="accessory-item" id="accessory-1">
+                <img src="img/black.webp" alt="Gaming Keyboard" class="accessory-img">
+                <div class="accessory-info">
+                    <h3>Mechanical Gaming Keyboard</h3>
+                    <p>RGB backlit with customizable keys</p>
+                    <div class="price">Rs 15,000</div>
+                </div>
+            </div>
+            <div class="accessory-item" id="accessory-2">
+                <img src="img/mouse.jpg" alt="Gaming Mouse" class="accessory-img">
+                <div class="accessory-info">
+                    <h3>High-Precision Gaming Mouse</h3>
+                    <p>Adjustable DPI and programmable buttons</p>
+                    <div class="price">Rs 7500</div>
+                </div>
+            </div>
+            <div class="accessory-item" id="accessory-3">
+                <img src="img/monitor.webp" alt="Monitor" class="accessory-img">
+                <div class="accessory-info">
+                    <h3>27" 144Hz Gaming Monitor</h3>
+                    <p>Ultra-fast refresh rate for smooth gameplay</p>
+                    <div class="price">Rs 75,000</div>
+                </div>
+            </div>
+            <div class="accessory-item" id="accessory-4">
+                <img src="img/kc.jpg" alt="SSD Drive" class="accessory-img">
+                <div class="accessory-info">
+                    <h3>1TB NVMe SSD</h3>
+                    <p>High-speed storage for faster load times</p>
+                    <div class="price">Rs 42,000</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section class="section" id="contact" style="background-color: rgba(10, 61, 46, 0.3);">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+        </div>
+        <div class="section-subtitle">
+            <p>Get in touch for repairs, consultations, or custom builds</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <div class="contact-detail">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Visit Our Shop</h4>
+                        <p>Al Aqsha road, Main street, Kinniya 03, Sri Lanka</p>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h4>Call Us</h4>
+                        <p>(+94) 75 123-4567</p>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>Email Us</h4>
+                        <p>info@gbasetech.com</p>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h4>Business Hours</h4>
+                        <p>Mon-Fri: 9:00 AM - 7:00 PM</p>
+                        <p>Sat: 10:00 AM - 5:00 PM</p>
+                        <p>Sun: 12:00 PM - 4:00 PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Send Us a Message</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Needed</label>
+                        <select id="service"
+                            style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid var(--glass-border); border-radius: 10px; color: var(--white); font-size: 1rem;">
+                            <option value="">Select a service</option>
+                            <option value="repair">Computer Repair</option>
+                            <option value="software">Software Installation</option>
+                            <option value="gaming">Custom Gaming PC</option>
+                            <option value="upgrade">Upgrade Service</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps?q=Gbase%20Technologies%20Kinniya%20Sri%20Lanka&output=embed"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Gbase Technologies</h3>
+                <p>Your trusted partner for all computer and laptop solutions since 2010.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="#accessories">Accessories</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Al Aqsha road,Main street,Kinniya 03</p>
+                <p><i class="fas fa-phone"></i> (+94) 75 123-4567</p>
+                <p><i class="fas fa-envelope"></i> info@gbasetech.com</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9AM-7PM, Sat: 10AM-5PM, Sun: 12PM-4PM</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Gbase Technologies. All rights reserved. | Designed with <i class="fas fa-heart"
+                    style="color: #ff4757;"></i> for computer enthusiasts</p>
+        </div>
+    </footer>
+
+    <!-- Modal Popup -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Details</h3>
+                <button class="close-modal" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img id="modal-image" src="" alt="Modal Image" class="modal-img">
+                <div class="modal-info">
+                    <h4 id="modal-name">Name</h4>
+                    <p id="modal-position">Position</p>
+                    <div id="modal-description">
+                        <p>Detailed information will appear here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active')
+                ? '<i class="fas fa-times"></i>'
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Modal functionality
+        const modal = document.getElementById('modal');
+        const closeModal = document.getElementById('close-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalImage = document.getElementById('modal-image');
+        const modalName = document.getElementById('modal-name');
+        const modalPosition = document.getElementById('modal-position');
+        const modalDescription = document.getElementById('modal-description');
+
+        // CEO Modal Data
+        const ceoData = {
+            title: "CEO Details",
+            name: "Imthiyas Azan",
+            position: "CEO",
+            image: "img/imthiyas.jpeg",
+            description: "<p>Imthiyas founded Gbase Technologies in 2010 with a vision to provide reliable and affordable computer solutions to the community. With over 15 years of experience in computer hardware and software, he has built a team of certified technicians who share his passion for technology.</p><p>Under his leadership, Gbase has grown from a small repair shop to a full-service computer solutions provider, specializing in repairs, custom builds, and software services. Imthiyas believes in continuous learning and ensures his team stays updated with the latest technological advancements.</p><p>When he's not working, Imthiyas enjoys building custom gaming PCs and participating in local tech meetups.</p>"
+        };
+
+        // Team Members Modal Data
+        const teamData = {
+            "team-member-1": {
+                title: "Team Member Details",
+                name: "Afrath Farook",
+                position: "Lead Hardware Specialist",
+                image: "img/afrath.jpg",
+                description: "<p>Afrath is our lead hardware specialist with over 4 years of experience in computer repairs. He specializes in laptop motherboard repairs, screen replacements, and component-level diagnostics.</p><p>He holds certifications from CompTIA, Microsoft, and Apple, making him proficient in repairing devices from all major manufacturers. Afrath is known for his meticulous attention to detail and ability to solve complex hardware issues.</p><p>In his free time, Afrath volunteers at local schools, teaching basic computer repair skills to students.</p>"
+            },
+            "team-member-2": {
+                title: "Team Member Details",
+                name: "David Chen",
+                position: "Software & OS Expert",
+                image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                description: "<p>David is our software guru with extensive experience in operating systems, virus removal, and software optimization. He is Microsoft Certified and specializes in Windows installations, driver updates, and system troubleshooting.</p><p>With 8 years in the industry, David has developed efficient processes for software repairs that minimize downtime for our clients. He stays current with the latest security threats and protection methods.</p><p>David enjoys coding in his spare time and has developed several utility tools that our team uses to streamline diagnostics.</p>"
+            },
+            "team-member-3": {
+                title: "Team Member Details",
+                name: "James Wilson",
+                position: "Gaming PC Specialist",
+                image: "https://images.unsplash.com/photo-1551836026-d5c2c5af78e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                description: "<p>James is our custom gaming PC expert with a passion for high-performance computing. He has been building custom PCs for over 7 years and stays updated on the latest components and benchmarking techniques.</p><p>He works closely with clients to understand their gaming needs and budget, then designs and builds optimized systems for gaming, streaming, and content creation. James also specializes in PC cooling solutions and RGB lighting setups.</p><p>When he's not building PCs, James is an avid gamer who participates in local esports tournaments.</p>"
+            }
+        };
+
+        // Accessories Modal Data
+        const accessoriesData = {
+            "accessory-1": {
+                title: "Product Details",
+                name: "Mechanical Gaming Keyboard",
+                position: "Rs 15,000",
+                image: "img/black.webp",
+                description: "<p>This mechanical gaming keyboard features RGB backlighting with 16.8 million color options and customizable lighting effects. It uses Cherry MX Red switches for smooth, linear keystrokes perfect for gaming.</p><p><strong>Features:</strong></p><ul><li>Anti-ghosting with N-key rollover</li><li>Detachable wrist rest for comfort</li><li>Programmable macro keys</li><li>Aluminum top plate for durability</li><li>Braided USB cable</li></ul><p>Compatible with Windows, Mac, and Linux systems. Includes software for advanced customization.</p>"
+            },
+            "accessory-2": {
+                title: "Product Details",
+                name: "High-Precision Gaming Mouse",
+                position: "Rs 7500",
+                image: "img/mouse.jpg",
+                description: "<p>This high-precision gaming mouse features an adjustable DPI from 200 to 12,000, allowing you to switch sensitivity on the fly. It has 8 programmable buttons that can be customized for games or productivity applications.</p><p><strong>Features:</strong></p><ul><li>Pixart 3389 sensor for accurate tracking</li><li>Omron switches rated for 50 million clicks</li><li>RGB lighting with 8 effects</li><li>Lightweight design (85g)</li><li>Braided cable with gold-plated USB</li></ul><p>Ergonomic shape suitable for claw, palm, or fingertip grip styles.</p>"
+            },
+            "accessory-3": {
+                title: "Product Details",
+                name: "27\" 144Hz Gaming Monitor",
+                position: "Rs 75,000",
+                image: "img/monitor.webp",
+                description: "<p>This 27-inch gaming monitor features a 144Hz refresh rate and 1ms response time, eliminating motion blur and providing smooth gameplay even in fast-paced games. It supports AMD FreeSync technology for tear-free gaming.</p><p><strong>Features:</strong></p><ul><li>2560x1440 QHD resolution</li><li>IPS panel with wide viewing angles</li><li>HDR10 support for better contrast</li><li>Thin bezels for multi-monitor setups</li><li>Adjustable stand (height, tilt, swivel)</li></ul><p>Includes DisplayPort, HDMI, and USB ports. Perfect for gaming, graphic design, and multimedia work.</p>"
+            },
+            "accessory-4": {
+                title: "Product Details",
+                name: "1TB NVMe SSD",
+                position: "Rs 42,000",
+                image: "img/kc.jpg",
+                description: "<p>This high-speed NVMe SSD offers read speeds up to 3500MB/s and write speeds up to 3000MB/s, making it 6x faster than traditional SATA SSDs. It's perfect for operating systems, games, and applications that demand fast load times.</p><p><strong>Features:</strong></p><ul><li>PCIe Gen 3.0 x4 interface</li><li>M.2 2280 form factor</li><li>3D NAND flash memory</li><li>5-year limited warranty</li><li>Thermal throttling protection</li></ul><p>Includes cloning software for easy migration from your old drive. Compatible with desktops and laptops that have M.2 slots.</p>"
+            }
+        };
+
+        // Open modal with CEO data
+        document.getElementById('ceo-card').addEventListener('click', () => {
+            openModal(ceoData);
+        });
+
+        // Open modal with team member data
+        Object.keys(teamData).forEach(id => {
+            document.getElementById(id).addEventListener('click', () => {
+                openModal(teamData[id]);
+            });
+        });
+
+        // Open modal with accessory data
+        Object.keys(accessoriesData).forEach(id => {
+            document.getElementById(id).addEventListener('click', () => {
+                openModal(accessoriesData[id]);
+            });
+        });
+
+        // Function to open modal with data
+        function openModal(data) {
+            modalTitle.textContent = data.title;
+            modalName.textContent = data.name;
+            modalPosition.textContent = data.position;
+            modalImage.src = data.image;
+            modalDescription.innerHTML = data.description;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const service = document.getElementById('service').value;
+
+            // Show success message
+            alert(`Thank you, ${name}! Your message has been received. We will contact you at ${email} regarding your ${service} request within 24 hours.`);
+
+            // Reset form
+            document.getElementById('contactForm').reset();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Hero Slider Functionality
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, 5000);
+
+    </script>
+</body>
+
+</html>
+```
