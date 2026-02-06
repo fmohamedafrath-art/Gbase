@@ -456,6 +456,88 @@
             margin-bottom: 1.5rem;
         }
 
+        /* Service Cards with Background Images */
+        .service-card.hardware-repairs,
+        .service-card.software-solutions,
+        .service-card.gaming-pcs,
+        .service-card.upgrades-optimization {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--accent-green);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-card.hardware-repairs:hover,
+        .service-card.software-solutions:hover,
+        .service-card.gaming-pcs:hover,
+        .service-card.upgrades-optimization:hover {
+            border: 2px solid var(--accent-green);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Hardware Repairs Background */
+        .service-card.hardware-repairs {
+            background-image: url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        /* Software Solutions Background */
+        .service-card.software-solutions {
+            background-image: url('https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        /* Gaming PCs Background */
+        .service-card.gaming-pcs {
+            background-image: url('https://images.unsplash.com/photo-1587202372634-32705e3bf49c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        /* Upgrades & Optimization Background */
+        .service-card.upgrades-optimization {
+            background-image: url('https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        /* Overlay for all service cards with backgrounds */
+        .service-card.hardware-repairs::before,
+        .service-card.software-solutions::before,
+        .service-card.gaming-pcs::before,
+        .service-card.upgrades-optimization::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 36, 30, 0.92) 0%, rgba(78, 100, 93, 0.88) 100%);
+            z-index: 0;
+        }
+
+        /* Content positioning above overlay */
+        .service-card.hardware-repairs .service-icon,
+        .service-card.hardware-repairs h3,
+        .service-card.hardware-repairs p,
+        .service-card.software-solutions .service-icon,
+        .service-card.software-solutions h3,
+        .service-card.software-solutions p,
+        .service-card.gaming-pcs .service-icon,
+        .service-card.gaming-pcs h3,
+        .service-card.gaming-pcs p,
+        .service-card.upgrades-optimization .service-icon,
+        .service-card.upgrades-optimization h3,
+        .service-card.upgrades-optimization p {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hover effect for all service cards with backgrounds */
+        .service-card.hardware-repairs:hover::before,
+        .service-card.software-solutions:hover::before,
+        .service-card.gaming-pcs:hover::before,
+        .service-card.upgrades-optimization:hover::before {
+            background: linear-gradient(135deg, rgba(10, 61, 46, 0.85) 0%, rgba(15, 76, 58, 0.80) 100%);
+        }
+
         /* Team Section */
         .team-container {
             display: grid;
@@ -962,7 +1044,7 @@
             <p>Comprehensive computer solutions tailored to your needs</p>
         </div>
         <div class="services-container">
-            <div class="service-card">
+            <div class="service-card hardware-repairs">
                 <div class="service-icon">
                     <i class="fas fa-tools"></i>
                 </div>
@@ -970,7 +1052,7 @@
                 <p>Expert repair services for laptops, desktops, and all computer components. We fix screens, keyboards,
                     motherboards, and more.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card software-solutions">
                 <div class="service-icon">
                     <i class="fas fa-laptop-medical"></i>
                 </div>
@@ -978,7 +1060,7 @@
                 <p>Windows installation, virus removal, driver updates, and software troubleshooting. We make your
                     computer run like new.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card gaming-pcs">
                 <div class="service-icon">
                     <i class="fas fa-gamepad"></i>
                 </div>
@@ -986,7 +1068,7 @@
                 <p>Build your dream gaming rig with our expert guidance. We select the best components for your budget
                     and performance needs.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card upgrades-optimization">
                 <div class="service-icon">
                     <i class="fas fa-sync-alt"></i>
                 </div>
@@ -1027,7 +1109,7 @@
         </div>
         <div class="team-container">
             <div class="team-member" id="team-member-1">
-                <img src="img/AFRATH.jpg" alt="Technician" class="member-img">
+                <img src="img/image a.png" alt="Technician" class="member-img">
                 <div class="member-info">
                     <h3>Afrath Farook</h3>
                     <p>Lead Hardware Specialist</p>
@@ -1043,7 +1125,7 @@
                 </div>
             </div>
             <div class="team-member" id="team-member-3">
-                <img src="img/Nafri.jpeg" alt="Technician" class="member-img">
+                <img src="img/nafri2.png" alt="Technician" class="member-img">
                 <div class="member-info">
                     <h3>Nafri</h3>
                     <p>Gaming PC Specialist</p>
@@ -1259,7 +1341,7 @@
                 title: "Team Member Details",
                 name: "Afrath Farook",
                 position: "Lead Hardware Specialist",
-                image: "img/afrath.jpg",
+                image: "img/image a2.png",
                 description: "<p>Afrath is our lead hardware specialist with over 4 years of experience in computer repairs. He specializes in laptop motherboard repairs, screen replacements, and component-level diagnostics.</p><p>He holds certifications from CompTIA, Microsoft, and Apple, making him proficient in repairing devices from all major manufacturers. Afrath is known for his meticulous attention to detail and ability to solve complex hardware issues.</p><p>In his free time, Afrath volunteers at local schools, teaching basic computer repair skills to students.</p>"
             },
             "team-member-2": {
@@ -1273,7 +1355,7 @@
                 title: "Team Member Details",
                 name: "Nafri",
                 position: "Gaming PC Specialist",
-                image: "img/Nafri.jpeg",
+                image: "img/Nafri2.png",
                 description: "<p>James is our custom gaming PC expert with a passion for high-performance computing. He has been building custom PCs for over 7 years and stays updated on the latest components and benchmarking techniques.</p><p>He works closely with clients to understand their gaming needs and budget, then designs and builds optimized systems for gaming, streaming, and content creation. James also specializes in PC cooling solutions and RGB lighting setups.</p><p>When he's not building PCs, James is an avid gamer who participates in local esports tournaments.</p>"
             }
         };
