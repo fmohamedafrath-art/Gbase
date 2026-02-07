@@ -1239,8 +1239,10 @@
             <div class="footer-logo">
                 <h3>Gbase Technologies</h3>
                 <p>Who are we?</p>
-                <p>Gbase Technologies is a multi-computer based company mainly we serve in web design and creative studio based in Sri Lanka.</p>
-                <p>We work with companies and individuals who need effective, Repairing Computers, creative affordable Web Designing, Website Maintenance, Web Hosting, Web Development and other IT Solutions.</p><br>
+                <p>Gbase Technologies is a multi-computer based company mainly we serve in web design and creative
+                    studio based in Sri Lanka.</p>
+                <p>We work with companies and individuals who need effective, Repairing Computers, creative affordable
+                    Web Designing, Website Maintenance, Web Hosting, Web Development and other IT Solutions.</p><br>
                 <p>Your trusted partner for all computer and laptop solutions since 2004.</p>
             </div>
             <div class="footer-links">
@@ -1264,11 +1266,19 @@
         </div>
         <div class="copyright">
             <p>&copy; 2023 Gbase Technologies. All rights reserved. | Designed with <i class="fas fa-heart"
-                    style="color: #ff4757;"></i> for computer enthusiasts <a href="admin.html"
-                    style="color: #555; text-decoration: none; font-size: 0.8rem; margin-left: 10px;">Admin Access</a>
+                    style="color: #ff4757;"></i> for computer enthusiasts <a href="admin.html" id="admin-link"
+                    style="color: #555; text-decoration: none; font-size: 0.8rem; margin-left: 10px; display: none;">Admin
+                    Access</a>
             </p>
         </div>
     </footer>
+
+    <script>
+        // Only show Admin Access link if running locally
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:') {
+            document.getElementById('admin-link').style.display = 'inline';
+        }
+    </script>
 
     <!-- Modal Popup -->
     <div class="modal" id="modal">
