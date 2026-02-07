@@ -940,6 +940,28 @@
             }
         }
 
+        /* Repair Gallery Grid */
+        .repair-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .repair-gallery img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border: 1px solid var(--accent-green);
+        }
+
+        .repair-gallery img:hover {
+            transform: scale(1.05);
+        }
+
         @media (max-width: 576px) {
             .hero-content {
                 padding: 1.5rem;
@@ -1044,7 +1066,7 @@
             <p>Comprehensive computer solutions tailored to your needs</p>
         </div>
         <div class="services-container">
-            <div class="service-card hardware-repairs">
+            <div class="service-card hardware-repairs" id="service-hardware">
                 <div class="service-icon">
                     <i class="fas fa-tools"></i>
                 </div>
@@ -1052,7 +1074,7 @@
                 <p>Expert repair services for laptops, desktops, and all computer components. We fix screens, keyboards,
                     motherboards, and more.</p>
             </div>
-            <div class="service-card software-solutions">
+            <div class="service-card software-solutions" id="service-software">
                 <div class="service-icon">
                     <i class="fas fa-laptop-medical"></i>
                 </div>
@@ -1060,7 +1082,7 @@
                 <p>Windows installation, virus removal, driver updates, and software troubleshooting. We make your
                     computer run like new.</p>
             </div>
-            <div class="service-card gaming-pcs">
+            <div class="service-card gaming-pcs" id="service-gaming">
                 <div class="service-icon">
                     <i class="fas fa-gamepad"></i>
                 </div>
@@ -1068,7 +1090,7 @@
                 <p>Build your dream gaming rig with our expert guidance. We select the best components for your budget
                     and performance needs.</p>
             </div>
-            <div class="service-card upgrades-optimization">
+            <div class="service-card upgrades-optimization" id="service-upgrades">
                 <div class="service-icon">
                     <i class="fas fa-sync-alt"></i>
                 </div>
@@ -1145,6 +1167,9 @@
         </div>
         <div class="accessories-container" id="accessories-container">
             <!-- Dynamic Content -->
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="accessories.html" class="cta-button">View All Accessories</a>
         </div>
     </section>
 
@@ -1239,8 +1264,10 @@
             <div class="footer-logo">
                 <h3>Gbase Technologies</h3>
                 <p>Who are we?</p>
-                <p>Gbase Technologies is a multi-computer based company mainly we serve in web design and creative studio based in Sri Lanka.</p>
-                <p>We work with companies and individuals who need effective, Repairing Computers, creative affordable Web Designing, Website Maintenance, Web Hosting, Web Development and other IT Solutions.</p><br>
+                <p>Gbase Technologies is a multi-computer based company mainly we serve in web design and creative
+                    studio based in Sri Lanka.</p>
+                <p>We work with companies and individuals who need effective, Repairing Computers, creative affordable
+                    Web Designing, Website Maintenance, Web Hosting, Web Development and other IT Solutions.</p><br>
                 <p>Your trusted partner for all computer and laptop solutions since 2004.</p>
             </div>
             <div class="footer-links">
@@ -1257,13 +1284,15 @@
             <div class="footer-contact">
                 <h4>Contact Info</h4>
                 <p><i class="fas fa-map-marker-alt"></i> Al Aqsha road,Main street,Kinniya 03</p>
-                <p><i class="fas fa-phone"></i> (+94) 75 123-4567</p>
-                <p><i class="fas fa-envelope"></i> info@gbasetech.com</p>
+                <p><i class="fas fa-phone"></i> (+94) 77.529.4442</p>
+                <p><i class="fas fa-phone"></i> (+96) 59.601.0635</p>
+                <p><i class="fas fa-phone"></i> (+94) 75 6194018</p>
+                <p><i class="fas fa-envelope"></i> gbaselk@gmail.com</p>
                 <p><i class="fas fa-clock"></i> Mon-Fri: 9AM-7PM, Sat: 10AM-5PM, Sun: 12PM-4PM</p>
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2023 Gbase Technologies. All rights reserved. | Designed with <i class="fas fa-heart"
+            <p>&copy; 2026 Gbase Technologies. All rights reserved. | Designed with Afrath_Farook<i class="fas fa-heart"
                     style="color: #ff4757;"></i> for computer enthusiasts <a href="admin.html"
                     style="color: #555; text-decoration: none; font-size: 0.8rem; margin-left: 10px;">Admin Access</a>
             </p>
@@ -1473,9 +1502,232 @@
             });
         });
 
+        // Services Data
+        const servicesData = {
+            "service-hardware": {
+                title: "Hardware Repairs",
+                name: "Comprehensive Hardware Services",
+                position: "Expert Diagnostics & Repair",
+                image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                description: `<p>We offer expert repair services for all hardware issues. Our technicians are skilled in handling:</p>
+                <ul>
+                    <li><strong>Desktop and Laptop Repairs:</strong> Comprehensive diagnostics and fixes for all brands.</li>
+                    <li><strong>Screen Replacement:</strong> Cracked or malfunctioning screens on laptops and monitors.</li>
+                    <li><strong>Component Repairs:</strong> Motherboard repair and replacement, keyboard replacement, and power supply unit (PSU) fixes.</li>
+                    <li><strong>Data Recovery:</strong> Retrieving data from damaged hard drives or SSDs.</li>
+                </ul>
+                <p>Our goal is to get your device back to you in perfect working condition as quickly as possible.</p>
+                <div class="repair-gallery">
+                    <img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Screen Repair" onclick="openSubDetail('hardware', 0)">
+                    <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Motherboard Repair" onclick="openSubDetail('hardware', 1)">
+                    <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Keyboard Repair" onclick="openSubDetail('hardware', 2)">
+                    <img src="https://images.unsplash.com/photo-1591405351996-857e2a9b4009?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Component Fix" onclick="openSubDetail('hardware', 3)">
+                </div>`
+            },
+            "service-software": {
+                title: "Software Solutions",
+                name: "Software Optimization & Security",
+                position: "Installation & Maintenance",
+                image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                description: `<p>Ensure your computer runs smoothly and securely with our software solutions:</p>
+                <ul>
+                    <li><strong>Operating System Installation:</strong> Fresh installs or upgrades of Windows, macOS, or Linux.</li>
+                    <li><strong>Virus & Malware Removal:</strong> thorough cleaning of your system to protect your data and privacy.</li>
+                    <li><strong>Driver Updates:</strong> Installation of the latest drivers for optimal hardware performance.</li>
+                    <li><strong>Software Troubleshooting:</strong> Fixing crashes, errors, and compatibility issues with applications.</li>
+                    <li><strong>Data Backup Solutions:</strong> Setting up automated backups to prevent data loss.</li>
+                </ul>
+                <div class="repair-gallery">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Coding" onclick="openSubDetail('software', 0)">
+                    <img src="https://images.unsplash.com/photo-1562813733-b31f71025d54?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Security" onclick="openSubDetail('software', 1)">
+                    <img src="https://images.unsplash.com/photo-1588508065123-287b98bd003d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Installation" onclick="openSubDetail('software', 2)">
+                    <img src="https://images.unsplash.com/photo-1591696205602-2f950c417cb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Data Recovery" onclick="openSubDetail('software', 3)">
+                </div>`
+            },
+            "service-gaming": {
+                title: "Custom Gaming PCs",
+                name: "Build Your Dream Machine",
+                position: "Premium Components & Assembly",
+                image: "https://images.unsplash.com/photo-1587202372634-32705e3bf49c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                description: `<p>Get the ultimate gaming experience with a custom-built PC tailored to your needs:</p>
+                <ul>
+                    <li><strong>Custom Configurations:</strong> We help you choose the best CPU, GPU, RAM, and storage for your budget.</li>
+                    <li><strong>Expert Assembly:</strong> Professional cable management and component installation for maximum airflow and aesthetics.</li>
+                    <li><strong>Performance Testing:</strong> Stress testing and benchmarking to ensure stability and top-tier performance.</li>
+                    <li><strong>RGB Lighting:</strong> Customized lighting setups to match your style.</li>
+                    <li><strong>Water Cooling:</strong> Advanced cooling solutions for overclocking and quiet operation.</li>
+                </ul>
+                <div class="repair-gallery">
+                    <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Gaming Setup" onclick="openSubDetail('gaming', 0)">
+                    <img src="https://images.unsplash.com/photo-1552831388-6a0b3575b32a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="RGB Components" onclick="openSubDetail('gaming', 1)">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Water Cooling" onclick="openSubDetail('gaming', 2)">
+                    <img src="https://images.unsplash.com/photo-1592173376801-185310a688fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="GPU" onclick="openSubDetail('gaming', 3)">
+                </div>`
+            },
+            "service-upgrades": {
+                title: "Upgrades & Optimization",
+                name: "Boost Performance",
+                position: "Speed & Efficiency",
+                image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                description: `<p>Breathe new life into your old computer with our upgrade services:</p>
+                <ul>
+                    <li><strong>RAM Upgrades:</strong> Increase memory for better multitasking and faster application loading.</li>
+                    <li><strong>SSD Installation:</strong> Switch to a Solid State Drive for lightning-fast boot times and system responsiveness.</li>
+                    <li><strong>Graphics Card Upgrades:</strong> Improve gaming and rendering performance.</li>
+                    <li><strong>System Optimization:</strong> Cleaning up temporary files, disabling unnecessary startup programs, and optimizing settings.</li>
+                    <li><strong>Dust Cleaning:</strong> Physical cleaning to prevent overheating and prolong component life.</li>
+                </ul>
+                <div class="repair-gallery">
+                    <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="RAM Upgrade" onclick="openSubDetail('upgrades', 0)">
+                    <img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="SSD Installation" onclick="openSubDetail('upgrades', 1)">
+                    <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Cleaning" onclick="openSubDetail('upgrades', 2)">
+                    <img src="https://images.unsplash.com/photo-1555618568-b630e695844a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Optimization" onclick="openSubDetail('upgrades', 3)">
+                </div>`
+            }
+        };
+
+        // Sub-Services Data for Drill-Down
+        const subServicesData = {
+            "hardware": [
+                {
+                    title: "Screen Replacement",
+                    name: "Display Repair Services",
+                    position: "Laptops & Monitors",
+                    image: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                    description: "<p>We provide professional screen replacement services for all laptop makes and models, including MacBook, Dell, HP, Lenovo, and Asus. </p><p>Using high-quality panels, we fix cracked screens, dead pixels, and backlight issues. Most screen replacements can be done within 24 hours.</p>"
+                },
+                {
+                    title: "Motherboard Repair",
+                    name: "Chip-Level & Circuit Repair",
+                    position: "Advanced Diagnostics",
+                    image: "https://images.unsplash.com/photo-1550009158-9ebf69173e03?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                    description: "<p>Our advanced component-level repair center handles complex motherboard issues. We repair water damage, short circuits, charging IC failures, and BIOS corruptions.</p><p>We use state-of-the-art diagnostic tools to identify the exact cause of failure and replace only the necessary components to save you money compared to a full board replacement.</p>"
+                },
+                {
+                    title: "Keyboard Repair",
+                    name: "Input Device Solutions",
+                    position: "Key Replacement & Cleaning",
+                    image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                    description: "<p>Stuck keys, missing keycaps, or liquid spill damage? we offer complete keyboard replacements for laptops and repair services for mechanical keyboards.</p><p>We stock keyboards for most popular laptop models to ensure quick turnaround times.</p>"
+                },
+                {
+                    title: "Component Fix",
+                    name: "General Internal Repairs",
+                    position: "Fans, Ports & Hinges",
+                    image: "https://images.unsplash.com/photo-1591405351996-857e2a9b4009?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                    description: "<p>We fix broken hinges, damaged charging ports, noisy cooling fans, and overheating issues. Regular maintenance of these components extends the lifespan of your device and prevents more serious damage.</p>"
+                }
+            ],
+            "software": [
+                {
+                    title: "OS Installation",
+                    name: "Operating System Services",
+                    position: "Windows, Mac, Linux",
+                    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                    description: "<p>Clean installation of operating systems to ensure your computer runs like new. We configure drivers, essential software, and optimize settings for performance.</p><p>We also help with OS upgrades (e.g., Windows 10 to 11) while preserving your data.</p>"
+                },
+                {
+                    title: "System Security",
+                    name: "Virus & Malware Protection",
+                    position: "Security Audits",
+                    image: "https://images.unsplash.com/photo-1562813733-b31f71025d54?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                    description: "<p>Comprehensive virus and malware removal services. We clean infected systems, remove spyware, and install robust antivirus solutions to prevent future attacks.</p><p>We also advise on best security practices to keep your personal data safe.</p>"
+                },
+                {
+                    title: "Software Installation",
+                    name: "Application Setup",
+                    position: "Productivity & Creative Suites",
+                    image: "https://images.unsplash.com/photo-1588508065123-287b98bd003d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                    description: "<p>Hassle-free installation and configuration of software suites like Microsoft Office, Adobe Creative Cloud, AutoCAD, and more.</p><p>We resolve compatibility issues and ensure all software is properly licensed and updated.</p>"
+                },
+                {
+                    title: "Data Recovery",
+                    name: "Lost Data Retrieval",
+                    position: "HDD, SSD, USB",
+                    image: "https://images.unsplash.com/photo-1591696205602-2f950c417cb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                    description: "<p>Accidentally deleted files or formatted drive? We use advanced recovery software to retrieve lost documents, photos, and videos.</p><p>For physically damaged drives, we can help assess the situation and recommend specialized lab services if needed.</p>"
+                }
+            ],
+            "gaming": [
+                {
+                    title: "Gaming Setup",
+                    name: "Complete Battlestations",
+                    position: "Desk, Chair, & Peripherals",
+                    image: "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                    description: "<p>We don't just build PCs; we design complete gaming environments. From monitor mounting and cable management to LED ambient lighting installation.</p><p>Get the perfect ergonomic setup for long gaming sessions.</p>"
+                },
+                {
+                    title: "RGB Customization",
+                    name: "Aesthetic Lighting",
+                    position: "Sync & Control",
+                    image: "https://images.unsplash.com/photo-1552831388-6a0b3575b32a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                    description: "<p>Take your build to the next level with fully synchronized RGB lighting. We set up controllers and software to manage lighting effects across your fans, RAM, strips, and peripherals.</p>"
+                },
+                {
+                    title: "Water Cooling",
+                    name: "Liquid Cooling Solutions",
+                    position: "AIO & Custom Loops",
+                    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                    description: "<p>Keep your temperatures low and framerates high with liquid cooling. We install All-In-One (AIO) coolers or design intricate custom loops for maximum thermal performance and silence.</p>"
+                },
+                {
+                    title: "GPU Installation",
+                    name: "Graphics Card Upgrades",
+                    position: "High Performance",
+                    image: "https://images.unsplash.com/photo-1592173376801-185310a688fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                    description: "<p>Professional installation of the latest NVIDIA GeForce and AMD Radeon graphics cards. We ensure your power supply is adequate and there are no bottlenecks in your system.</p>"
+                }
+            ],
+            "upgrades": [
+                {
+                    title: "RAM Upgrade",
+                    name: "Memory Expansion",
+                    position: "Multitasking Performance",
+                    image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                    description: "<p>Upgrade your system memory to run more applications simultaneously. Essential for content creators, gamers, and heavy multitaskers.</p>"
+                },
+                {
+                    title: "SSD Installation",
+                    name: "Storage Speed Boost",
+                    position: "NVMe & SATA",
+                    image: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                    description: "<p>Clone your old slow hard drive to a super-fast SSD. Experience 10x faster boot times and instant application launches.</p>"
+                },
+                {
+                    title: "System Cleaning",
+                    name: "Dust Removal",
+                    position: "Maintenance",
+                    image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                    description: "<p>Professional internal cleaning to remove dust buildup that causes overheating and throttling. We re-apply high-performance thermal paste to your CPU and GPU.</p>"
+                },
+                {
+                    title: "Optimization",
+                    name: "Software Tuning",
+                    position: "Bloatware Removal",
+                    image: "https://images.unsplash.com/photo-1555618568-b630e695844a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+                    description: "<p>We fine-tune your OS settings, remove unnecessary background processes, and update BIOS/firmware to squeeze every bit of performance out of your hardware.</p>"
+                }
+            ]
+        };
+
+        // Function to open sub-details
+        function openSubDetail(category, index) {
+            if (subServicesData[category] && subServicesData[category][index]) {
+                openModal(subServicesData[category][index]);
+            }
+        }
+
+        // Open modal with service data (Changed to open new page in same tab)
+        Object.keys(servicesData).forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.addEventListener('click', () => {
+                    window.location.href = `service.html?id=${id}`;
+                });
+            }
+        });
+
         // Open modal with accessory data
-        // Previous static listener removed
-        // Object.keys(accessoriesData).forEach(id => { ... });
 
         // Function to open modal with data
         function openModal(data) {
